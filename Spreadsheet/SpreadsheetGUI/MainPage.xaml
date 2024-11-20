@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:SS="clr-namespace:SS"
+             x:Class="SpreadsheetGUI.MainPage">
+
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem Text="New" Clicked="NewClicked" />
+            <MenuFlyoutItem Text="Open" Clicked="OpenClicked" />
+            <MenuFlyoutItem Text="Save" Clicked="SaveClicked" />
+        </MenuBarItem>
+        <MenuBarItem Text="Help">
+            <MenuFlyoutItem Text="Navigating the spreadsheet" Clicked="NavigatingSpreadsheetClicked" />
+            <MenuFlyoutItem Text="Modifying spreadsheet data" Clicked="ModifyingSpreadsheetDataClicked" />
+            <MenuFlyoutItem Text="Saving and loading spreadsheet files" Clicked="SavingLoadingSpreadsheetClicked" />
+            <MenuFlyoutItem Text="Customizing the spreadsheet" Clicked="SpecialFeatureClicked" />
+        </MenuBarItem>
+        <MenuBarItem Text="Status: Saved"
+                     IsEnabled="False"
+                     x:Name="statusMenuItem"/>
+
+    </ContentPage.MenuBarItems>
+
+
+
+    <Grid RowDefinitions="40, 40, *">
+        <HorizontalStackLayout Grid.Row="0">
+            <Entry Text="A1" x:Name="cellNameEntry" IsReadOnly="True" />
+
+            <Entry
+                    Text="Contents: " 
+                    IsReadOnly="True"
+            />
+            
+            <Entry 
+                    Placeholder="Enter contents of cell..." 
+                    x:Name="contentEntryField"
+                    MinimumWidthRequest="500"
+            />
+
+            <Button 
+                    Text="Confirm" 
+                    Clicked="ContentsOfCellSubmitted"
+            />
+
+            <Entry
+                    MinimumWidthRequest="100"
+                    Text="Value: " 
+                    IsReadOnly="True"
+                    HorizontalTextAlignment="End"   
+            />
+
+            <Entry Text="" x:Name="valueEntry" IsReadOnly="True" />
+
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Grid.Row="1">
+            <Entry
+                Text="Header Background Color: " 
+                IsReadOnly="True"
+            />
+
+            <Picker
+                x:Name="headerColorPicker">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Black</x:String>
+                        <x:String>Gray</x:String>
+                        <x:String>White</x:String>
+                        <x:String>Red</x:String>
+                        <x:String>Orange</x:String>
+                        <x:String>Yellow</x:String>
+                        <x:String>Green</x:String>
+                        <x:String>Blue</x:String>
+                        <x:String>Purple</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Entry
+                Text="Header Text Color: " 
+                IsReadOnly="True"
+            />
+
+            <Picker
+                x:Name="textColorPicker">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Black</x:String>
+                        <x:String>Gray</x:String>
+                        <x:String>White</x:String>
+                        <x:String>Red</x:String>
+                        <x:String>Orange</x:String>
+                        <x:String>Yellow</x:String>
+                        <x:String>Green</x:String>
+                        <x:String>Blue</x:String>
+                        <x:String>Purple</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Button 
+                Text="Update Colors" 
+                Clicked="ColorModificationConfirmSubmitted"
+            />
+
+
+        </HorizontalStackLayout>
+        <SS:SpreadsheetGrid x:Name="spreadsheetGrid" Grid.Row="2"/>
+    </Grid>
+
+
+</ContentPage>
+
